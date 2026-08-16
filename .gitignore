@@ -1,0 +1,25 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual Environment (เผื่อมีการสร้างในอนาคต)
+venv/
+env/
+ENV/
+
+# VS Code IDE settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# YOLO Training Outputs & Runs (โฟลเดอร์ผลลัพธ์การเทรนขนาดใหญ่ ไม่ควรขึ้น Git)
+runs/
+
+# Dataset หรือไฟล์วิดีโอขนาดใหญ่ (ถ้าต้องการเว้นไม่ให้อัปโหลดวิดีโอเข้า GitHub)
+*.mov
+*.mp4
+
+*.pt
