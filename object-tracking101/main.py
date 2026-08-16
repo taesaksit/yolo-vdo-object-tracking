@@ -14,16 +14,15 @@ def calculate_fps(curr_time, prev_time):
 
 
 def main():
-    # 1. โหลดโมเดล YOLO26 (ตัวเลือกไซส์: yolo26n.pt, yolo26s.pt, yolo26m.pt)
-    model = YOLO("yolo26m.pt")
+    model = YOLO("object-tracking101/models/yolov8n.pt")
 
     # 2. Export Classes ออกเป็น CSV
     classes_dict = model.names
     classes_df = pd.DataFrame(list(classes_dict.items()), columns=["ID", "Class"])
-    classes_df.to_csv("yolo26_classes.csv", index=False)
+    classes_df.to_csv("./object-tracking101/yolov8n_classes.csv", index=False)
 
     # 3. โหลดไฟล์วิดีโอ
-    video_path = "./vdo/many-dog.mov"
+    video_path = "/Users/saksit/Desktop/Computer Vision/object-detection/object-tracking101/vdo/car.mp4"
     cap = cv2.VideoCapture(video_path)
     
     if not cap.isOpened():
@@ -38,13 +37,12 @@ def main():
         if not ret:
             break
 
-        # ทำ Object Tracking ด้วย YOLO26
         results = model.track(
             source=frame,
             persist=True,
-            #classes=[0, 16, 32],      # กรองเฉพาะคลาสที่สนใจ (เช่น คน, สัตว์ หรือวัตถุอื่นๆ)
-            #tracker="bytetrack.yaml",
-            conf=0.3,
+            classes=[2],      # กรองเฉพาะคลาสที่สนใจ (เช่น คน, สัตว์ หรือวัตถุอื่นๆ)
+            tracker="fasttrack.yaml",
+            conf=0.5,
             iou=0.5,
             device="mps",             # ใช้ GPU บน Mac (ถ้าใช้ Windows/NVIDIA เปลี่ยนเป็น "0")
             verbose=False,
@@ -58,7 +56,7 @@ def main():
 
         cv2.putText(
             frame_,
-            f"YOLO26 FPS: {int(fps)}",
+            f"FPS: {int(fps)}",
             (20, 50),
             cv2.FONT_HERSHEY_SIMPLEX,
             1,
