@@ -1,6 +1,6 @@
-# People counting 
+# People counting beta
 
-<div align="left" style="display: flex; gap: 10px;">
-  <img src="./result-with-ui.png" alt="Custom Model Performance" width="45%" />
-  <img src="./result.png" alt="Custom Model Performance" width="45%" />
+<div align="left">
+  <img src="./result-with-ui.png" alt="Custom Model Performance" width="100%" style="margin-bottom: 10px;" />
+  <img src="./result.png" alt="Custom Model Performance" width="100%" />
 </div>
